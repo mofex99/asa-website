@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join ASA</title>
+    <link rel="stylesheet" href="joinASA.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+
+<nav class="navbar">
+    <div class="navbar__container">
+       <a href="/" id="navbar__logo">ASA</a>
+       <div class="navbar__toggle" id="mobile-menu">
+           <span class="bar"></span>
+           <span class="bar"></span>
+           <span class="bar"></span>
+       </div>
+       <ul class="navbar__menu">
+           <li class="navbar__item">
+               <a href="index.html" class="navbar__links"> Home </a>
+           </li>
+           <li class="navbar__item">
+               <a href="aboutUs.html" class="navbar__links"> About Us </a>
+           </li>
+           <li class="navbar__item">
+               <a href="eboard.html" class="navbar__links"> E-Board </a>
+           </li>
+           <li class="navbar__btn">
+               <a href="joinASA.html" class="button"> Join ASA </a>
+           </li>
+       </ul>
+   </div>
+</nav> 
+<body>
+<div class="container">  
+    <form id="contact" onsubmit="return postToGoogle();">
+      <h3>ASA New Member Form</h3>
+      <h4>Fill out the form</h4>
+      <fieldset>
+        <input placeholder="Your name"
+               type="text" 
+               name="entry.1022701337"
+               data-name="Name"
+               id="Name"
+               tabindex="1" 
+               required autofocus>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your School Email Address" 
+               type="email" 
+               name="entry.900565732"
+               data-name="Email"
+               id="Email"
+               tabindex="2" 
+               required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your Phone Number" 
+               type="tel" 
+               name="entry.842054620"
+               data-name="Phone"
+               id="Phone"
+               tabindex="3" 
+               required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your College" 
+               type="college" 
+               name="entry.491045899"
+               data-name="College"
+               id="College"
+               tabindex="4" 
+               required>
+      </fieldset>
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+
+
+
+  <script>
+      function postToGoogle() {
+        var field1 = $("#Name").val();
+        var field2 = $("#Email").val();
+        var field3 = $("#Phone").val();
+        var field4 = $("#College").val();
+  
+        $.ajax({
+          url: "{your_formResponse_url_goes_here}",
+            
+          //add your google form generated numbers below which are also the 'names' of your inputs     
+          data: {
+            "entry.1022701337": field1,
+            "entry.900565732": field2,
+            "entry.842054620": field3,
+            "entry.491045899": field4
+          },
+          type: "POST",
+          dataType: "xml",
+          success: function (d) {
+            $('#contact').trigger('reset');
+          },
+          error: function (x, y, z) {
+            $('#contact').trigger('reset');
+          }
+        });
+        return false;
+      }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+</body>
+</html>
